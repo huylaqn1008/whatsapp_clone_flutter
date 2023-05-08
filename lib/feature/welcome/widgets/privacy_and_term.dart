@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_social/common/untils/colours.dart';
+import 'package:flutter_social/common/extension/custom_theme_extension.dart';
+// import 'package:flutter_social/common/untils/colours.dart';
 
 class PrivacyAndTerms extends StatelessWidget {
   const PrivacyAndTerms({Key? key}) : super(key: key);
@@ -13,26 +14,26 @@ class PrivacyAndTerms extends StatelessWidget {
       ),
       child: RichText(
         textAlign: TextAlign.center,
-        text: const TextSpan(
+        text: TextSpan(
           text: 'Read our ',
           style: TextStyle(
-            color: Colours.grayDark,
+            color: context.theme.grayColor,
             height: 1.5,
           ),
           children: [
             TextSpan(
               text: 'Privacy Policy. ',
               style: TextStyle(
-                color: Colours.blueDark,
+                color: context.theme.blueColor,
               ),
             ),
-            TextSpan(
+            const TextSpan(
               text: 'Tap "Agree and continue" to accept the ',
             ),
             TextSpan(
               text: 'Term of Servies. ',
               style: TextStyle(
-                color: Colours.blueDark,
+                color: context.theme.blueColor,
               ),
             ),
           ],

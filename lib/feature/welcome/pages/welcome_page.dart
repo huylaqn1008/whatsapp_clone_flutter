@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_social/common/extension/custom_theme_extension.dart';
 import 'package:flutter_social/common/widgets/custom_elevated_button.dart';
-import 'package:flutter_social/feature/widgets/languge_button.dart';
-import 'package:flutter_social/feature/widgets/privacy_and_term.dart';
+import 'package:flutter_social/feature/welcome/widgets/languge_button.dart';
+import 'package:flutter_social/feature/welcome/widgets/privacy_and_term.dart';
 
 class WelcomePage extends StatelessWidget {
   const WelcomePage({super.key});
