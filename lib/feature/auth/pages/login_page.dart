@@ -52,7 +52,7 @@ class _LoginPageState extends State<LoginPage> {
       favorite: ['VN'],
       countryListTheme: CountryListThemeData(
         bottomSheetHeight: 600,
-        backgroundColor: Theme.of(context).colorScheme.background,
+        backgroundColor: Theme.of(context).backgroundColor,
         flagSize: 22,
         borderRadius: BorderRadius.circular(20),
         textStyle: TextStyle(color: context.theme.grayColor),

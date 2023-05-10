@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "979386213767",
+    "project_id": "whatsapp-messenger-a5dec",
+    "storage_bucket": "whatsapp-messenger-a5dec.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:979386213767:android:838404a4f8c743c0c0df22",
+        "android_client_info": {
+          "package_name": "com.example.flutter_social"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "979386213767-2uic191244i7qg3k8cc1kp5m1piuhgnc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAMiGtx218OwJuK_OeItZ4uvPZAJzX36sA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "979386213767-2uic191244i7qg3k8cc1kp5m1piuhgnc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

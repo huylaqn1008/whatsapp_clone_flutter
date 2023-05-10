@@ -10,10 +10,9 @@ ThemeData lightTheme() {
   return base.copyWith(
     backgroundColor: Colours.backgroundLight,
     scaffoldBackgroundColor: Colours.backgroundLight,
-    extensions: [
-      CustomThemeExtension.lightMode
-    ],
+    extensions: [CustomThemeExtension.lightMode],
     appBarTheme: const AppBarTheme(
+      titleTextStyle: TextStyle(fontSize: 18),
       systemOverlayStyle: SystemUiOverlayStyle(
         statusBarBrightness: Brightness.dark,
         statusBarColor: Colors.transparent,
