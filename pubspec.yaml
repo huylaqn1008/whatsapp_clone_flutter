@@ -42,6 +42,8 @@ dependencies:
   firebase_storage: ^11.1.2
   cloud_firestore: ^4.6.0
   flutter_riverpod: ^2.3.6
+  image_picker: ^0.8.7+5
+  photo_manager: ^2.6.0
 
 flutter_native_splash:
   color: "#FFFFFF"

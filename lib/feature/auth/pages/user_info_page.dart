@@ -1,12 +1,18 @@
+import 'dart:io';
+import 'dart:typed_data';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:flutter_social/common/extension/custom_theme_extension.dart';
+import 'package:flutter_social/common/helper/show_alert_dialog.dart';
 import 'package:flutter_social/common/untils/colours.dart';
 import 'package:flutter_social/common/widgets/custom_elevated_button.dart';
 import 'package:flutter_social/common/widgets/custom_icon_button.dart';
 import 'package:flutter_social/common/widgets/short_h_bar.dart';
+import 'package:flutter_social/feature/auth/pages/image_picker_page.dart';
 import 'package:flutter_social/feature/auth/widgets/custom_text_field.dart';
+import 'package:image_picker/image_picker.dart';
 
 class UserInfoPage extends StatefulWidget {
   const UserInfoPage({super.key});
@@ -16,6 +22,9 @@ class UserInfoPage extends StatefulWidget {
 }
 
 class _UserInfoPageState extends State<UserInfoPage> {
+  File? imageCamera;
+  Uint8List? imageGallery;
+
   imagePickerTypeBottomSheet() {
     return showModalBottomSheet(
       context: context,
@@ -52,7 +61,7 @@ class _UserInfoPageState extends State<UserInfoPage> {
                   width: 20,
                 ),
                 imagePickerIcon(
-                  onTap: () {},
+                  onTap: pickImageFromCamera,
                   icon: Icons.camera_alt_rounded,
                   text: 'Camera',
                 ),
@@ -60,7 +69,19 @@ class _UserInfoPageState extends State<UserInfoPage> {
                   width: 15,
                 ),
                 imagePickerIcon(
-                  onTap: () {},
+                  onTap: () async {
+                    Navigator.pop(context);
+                    final image = await Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) => const ImagePickerPage(),
+                      ),
+                    );
+                    if (image == null) return;
+                    setState(() {
+                      imageGallery = image;
+                      imageCamera = null;
+                    });
+                  },
                   icon: Icons.photo_camera_back_rounded,
                   text: 'Gallery',
                 ),
@@ -73,6 +94,21 @@ class _UserInfoPageState extends State<UserInfoPage> {
         );
       },
     );
+  }
+
+  pickImageFromCamera() async {
+    try {
+      final image = await ImagePicker().pickImage(source: ImageSource.camera);
+      setState(() {
+        imageCamera = File(image!.path);
+        imageGallery = null;
+      });
+    } catch (e) {
+      showAlertDialog(
+        context: context,
+        message: e.toString(),
+      );
+    }
   }
 
   imagePickerIcon({
@@ -138,6 +174,19 @@ class _UserInfoPageState extends State<UserInfoPage> {
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
                   color: context.theme.photoIcoBgColor,
+                  border: Border.all(
+                    color: imageCamera == null && imageGallery == null
+                        ? Colors.transparent
+                        : context.theme.grayColor!.withOpacity(0.4),
+                  ),
+                  image: imageCamera != null || imageGallery != null
+                      ? DecorationImage(
+                          fit: BoxFit.cover,
+                          image: imageGallery != null
+                              ? MemoryImage(imageGallery!) as ImageProvider
+                              : FileImage(imageCamera!),
+                        )
+                      : null,
                 ),
                 child: Padding(
                   padding: const EdgeInsets.only(
@@ -147,7 +196,9 @@ class _UserInfoPageState extends State<UserInfoPage> {
                   child: Icon(
                     Icons.add_a_photo_rounded,
                     size: 48,
-                    color: context.theme.photoIconColor,
+                    color: imageCamera == null && imageGallery == null
+                        ? context.theme.photoIconColor
+                        : Colors.transparent,
                   ),
                 ),
               ),
